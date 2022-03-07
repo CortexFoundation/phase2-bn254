@@ -6,11 +6,11 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 def mpc_setup(circuit):
     circuit_filename = config.get_circuit_filename(circuit)
-    params = config.get_params_filename(circuit)
-    if not os.path.exists(params):
-        os.makedirs(os.path.dirname(params), exist_ok=True)
-    subprocess.check_call([config.phase2_repo_path + "phase2/target/release/new", circuit_filename, params])
-    return params
+    params_filename = config.get_params_filename(circuit)
+    if not os.path.exists(params_filename):
+        os.makedirs(os.path.dirname(params_filename), exist_ok=True)
+    subprocess.check_call([config.phase2_repo_path + "phase2/target/release/new", circuit_filename, params_filename])
+    return params_filename
 
 if __name__ == "__main__":
     start = time.time()
@@ -21,13 +21,13 @@ if __name__ == "__main__":
 
             block = config.generate_block(circuit)
             circuit_filename = config.export_circuit(circuit)
-            params = mpc_setup(circuit)
+            params_filename = mpc_setup(circuit)
 
             # Add the params file to the zip file
-            zip_file.write(params, os.path.basename(params))
+            zip_file.write(params_filename, os.path.basename(params_filename))
 
             # delete the files
-            os.remove(params)
+            os.remove(params_filename)
             os.remove(circuit_filename)
             os.remove(block)
 
