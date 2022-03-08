@@ -12,7 +12,7 @@ phase2_repo_path = "../../phase2-bn254/"
 zion_repo_path = "../../../zion/"
 
 # Do the mpc for the following circuits
-circuits = [[0, False, [8]]]
+circuits = [[0, True, [8]]]
 
 # Set this to the folder containing the phase2 repo
 tool_executable = zion_repo_path + "build/tool"

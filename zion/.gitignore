@@ -6,3 +6,6 @@ blocks/
 circuits/
 *.zip
 params
+keys/
+challenge
+response
